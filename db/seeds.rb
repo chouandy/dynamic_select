@@ -9,8 +9,14 @@
 connection = ActiveRecord::Base.connection
 
 sql_files = ['counties', 'townships']
+adapter_type = connection.adapter_name.downcase.to_sym
+
 sql_files.each do |sql_file|
-  sql = File.read("db/sql/#{sql_file}.sql")
+  if adapter_type == :postgresql
+    sql = File.read("db/pg/#{sql_file}.sql")
+  else
+    sql = File.read("db/sql/#{sql_file}.sql")
+  end
   statements = sql.split(/;$/)
   statements.pop
 
