@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  county_id: 
+  township_id: 
+  total: 1
+
+two:
+  county_id: 
+  township_id: 
+  total: 1

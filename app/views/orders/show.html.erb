@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>County:</strong>
+  <%= @order.county.try(:name)%>
+</p>
+
+<p>
+  <strong>Township:</strong>
+  <%= @order.township.try(:name) %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @order.township.try(:zip_code) %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @order.total %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

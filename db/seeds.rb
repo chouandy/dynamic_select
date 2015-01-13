@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+connection = ActiveRecord::Base.connection
+
+sql_files = ['counties', 'townships']
+sql_files.each do |sql_file|
+  sql = File.read("db/sql/#{sql_file}.sql")
+  statements = sql.split(/;$/)
+  statements.pop
+
+  ActiveRecord::Base.transaction do
+    statements.each do |statement|
+      connection.execute(statement)
+    end
+  end
+end
